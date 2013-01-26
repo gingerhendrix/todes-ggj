@@ -7,7 +7,7 @@ class @Renderer
     @timer = new Interval(FPS, @loop)
     @ctx = @canvas.getContext('2d')
 
-    @entities = [new LandEntity(@)]
+    @entities = [new LandEntity(), new PlayerEntity(x: 0.2, color: 'red'), new PlayerEntity(x: 0.7, color: 'blue'), new BallEntity()]
 
   setupCanvas: ->
     @width = @canvas.width = window.innerWidth
