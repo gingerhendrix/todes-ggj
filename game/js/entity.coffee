@@ -36,10 +36,11 @@ class @PlayerEntity extends Entity
 
 
 class @BallEntity extends Entity
-  position: [0.4, 0.1]
+  position: [0.1, 0.5]
 
-  width: 0.1
-  height: 0.1
+  width: 0.01
+  height: 0.01
+  velocity: [0.1*RIGHT, 0.2*UP] 
   forces: [[0, GRAVITY]]
 
 

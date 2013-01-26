@@ -3,8 +3,6 @@
 #= require_tree .
 
 
-
-
 $ ->
   canvas = $('canvas').get 0
   exports.game = new Game
@@ -12,4 +10,4 @@ $ ->
   exports.controller = new Controller document.body, game
 
   renderer.start()
-  #game.timer.start()
+  game.timer.start()
