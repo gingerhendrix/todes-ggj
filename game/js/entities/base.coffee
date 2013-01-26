@@ -1,4 +1,4 @@
-class @EntityBase
+class @EntityBase extends @Plugin
   constructor: (attrs={}) ->
     attrs = defaults attrs,
       position: [0, 0]

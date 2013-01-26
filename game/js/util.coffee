@@ -11,5 +11,17 @@ class @Interval
     clearInterval(@interval)
     @running = false
 
+class @Plugin
+  @hook = (event, cb) ->
+    (@_hooks ||= {})[event] ||= []
+
+    @_hooks[event].push cb
+
+  @once = (event, cb) ->
+    @hook event, cb.once()
+
+  @trigger = (event, params...) ->
+    @_hooks?[event]?.forEach (cb) -> cb params...
+
 
 exports.defaults = (t, s) -> Object.merge s, t, true
