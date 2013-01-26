@@ -1,4 +1,4 @@
-exports = window
+window.exports = window
 
 exports.LEFT = -1
 exports.RIGHT = 1
