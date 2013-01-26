@@ -1,16 +1,18 @@
 class @Entity
-  constructor: (attrs={}) ->
-    @x = @y = @width = @height = 0
-    @color = '#000'
+  x: 0
+  y: 0
 
+  width: 0
+  height: 0
+  color: '#000'
+
+  constructor: (attrs={}) ->
+    @initialize?()
     @[key] = value for own key, value of attrs
 
-    @initialize?()
-
 class @LandEntity extends Entity
-  initialize: ->
-    @width = 1
-    @height = 0.3
+  x: 0
+  y: 0.7
 
-    @x = 0
-    @y = 1 - @height
+  width: 1
+  height: 0.3
