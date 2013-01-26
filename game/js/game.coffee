@@ -7,20 +7,28 @@ class @Game
     console.log @players
     @land = [new LandEntity(position: [0, 0.5], width: 0.5, height: 0.5), new LandEntity(position: [0.5, 0.7], width: 0.5, height: 0.3)] 
     @ball = new BallEntity(color: 'green', position: [0.1, 0.3], velocity: [0.1*RIGHT, 0.3*UP])
-      
+    @ball.hook 'explode', =>
+      console.log "Explode"
+      @explosion = new ExplosionEntity(position: @ball.position)
+      @ball = false
     @physics = new Physics(@)
     @timer = new Interval(1.second() / @ticksPerSecond, @tick)
+    @explosion = false
 
   entities: ->
-    [@land..., @players..., @ball]
+    es = [@land..., @players...]
+    es.push(@ball) if @ball
+    es.push(@explosion) if @explosion
+    es
 
   ticksPerSecond: 60 
 
   tick: =>
     @lastTime ||= new Date
 
-    msPast = (new Date) - @lastTime
+    time = ((new Date) - @lastTime)/1000
 
-    @physics.advance msPast/1000
+    @physics.advance time
+
 
     @lastTime = new Date

@@ -3,6 +3,8 @@ class @Physics
 
   advance: (t) ->
     @game.entities().forEach (e) =>
+      e.onTick(t)
+    @game.entities().forEach (e) =>
       @advanceMotion(e, t) if e.isMoving()
     @game.entities().forEach (e) =>
       @handleCollision(e) if e.isMoving()
@@ -12,7 +14,7 @@ class @Physics
     if collisions.length >  0
       collision = collisions[0]
       
-      console.log "Collision", e, collisions
+      #console.log "Collision", e, collisions
 
       #### General Algorithm
       # Find edge of collision
@@ -25,7 +27,7 @@ class @Physics
       if (e.initial.position[0] + e.width) - collision.minX() < ALMOST_ZERO and 
           (e.position[0] + e.width) - collision.minX() > ALMOST_ZERO #Crossed the left edge
 
-        console.log "Horizontal Collision"
+        #console.log "Horizontal Collision"
         dx = e.initial.position[0] - e.position[0]
         dline = (e.initial.position[0] + e.width) - collision.minX()
 
@@ -36,7 +38,7 @@ class @Physics
 
       else if (e.initial.position[0]) - collision.maxX() > ALMOST_ZERO and 
               (e.position[0]) - collision.maxX() < ALMOST_ZERO #Crossed the right edge
-        console.log "Horizontal Collision"
+        #console.log "Horizontal Collision"
 
         dx = e.initial.position[0] - e.position[0]
         dline = (e.initial.position[0] + e.width) - collision.maxX()
@@ -48,7 +50,7 @@ class @Physics
 
       else if (e.initial.position[1] + e.height) - collision.minY() < ALMOST_ZERO  and
               (e.position[1] + e.height) - collision.minY() > ALMOST_ZERO #Crossed the top edge
-        console.log "Vertical Collision"
+        #console.log "Vertical Collision"
 
         dy = e.initial.position[1] - e.position[1]
         dline = (e.initial.position[1] + e.width) - collision.minY()

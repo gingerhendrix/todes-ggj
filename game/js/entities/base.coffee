@@ -1,4 +1,4 @@
-class @EntityBase extends @Plugin
+class @EntityBase extends @Events
   constructor: (attrs={}) ->
     attrs = defaults attrs,
       position: [0, 0]
@@ -30,4 +30,7 @@ class @EntityBase extends @Plugin
   isMoving: ->
     return false if [@velocity...,(Math.abs(@initial.velocity[i] - @velocity[i]) for vel, i in @velocity)...].all (delta) -> ( Math.abs(delta) < STOPPED )
     return true
+
+  onTick: (t) ->
+
 

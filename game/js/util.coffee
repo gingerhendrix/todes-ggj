@@ -11,16 +11,16 @@ class @Interval
     clearInterval(@interval)
     @running = false
 
-class @Plugin
-  @hook = (event, cb) ->
+class @Events
+  hook: (event, cb) ->
     (@_hooks ||= {})[event] ||= []
 
     @_hooks[event].push cb
 
-  @once = (event, cb) ->
+  once: (event, cb) ->
     @hook event, cb.once()
 
-  @trigger = (event, params...) ->
+  trigger: (event, params...) ->
     @_hooks?[event]?.forEach (cb) -> cb params...
 
 
