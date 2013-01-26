@@ -21,7 +21,7 @@ class @Renderer
   loop: =>
     @clear()
 
-    @game.entities.forEach (e) =>
+    @game.entities().forEach (e) =>
       @ctx.fillStyle = e.color
       @ctx.fillRect @transform(e.x, e.y, e.width, e.height)...
 

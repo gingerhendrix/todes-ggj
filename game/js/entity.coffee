@@ -17,10 +17,19 @@ class @LandEntity extends Entity
   height: 0.3
 
 class @PlayerEntity extends Entity
+  walkingSpeed: 0.1
+  velocity: [0, 0]
   y: 0.6
 
   width: 0.1
   height: 0.1
+
+  move: (dir) ->
+    @velocity[0] = dir * @walkingSpeed #???
+ 
+  stop: (dir) ->
+    @velocity[0] = 0 #Really
+
 
 class @BallEntity extends Entity
   x: 0.4
