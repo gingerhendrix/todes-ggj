@@ -8,6 +8,18 @@ class @Entity
   height: 0
   color: '#000'
 
+  minX: ->
+    @position[0]
+
+  maxX: ->
+    @position[0] + @width
+
+  minY: ->
+    @position[1]
+
+  maxY: ->
+   @position[1] + @height
+
   constructor: (attrs={}) ->
 
     @initialize?()

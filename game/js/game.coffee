@@ -5,12 +5,13 @@ class @Game
       new PlayerEntity(position: [0.8, 0.6], color: 'blue')
     ]
     @land = new LandEntity()
-    @ball = new BallEntity()
+    @ball = new BallEntity(color: 'green')
     @physics = new Physics(@)
     @timer = new Interval(1.second() / @ticksPerSecond, @tick)
 
   entities: ->
-    [@land, @players..., @ball]
+    [@land, @ball]
+    #[@land, @players..., @ball]
 
   ticksPerSecond: 50 
 

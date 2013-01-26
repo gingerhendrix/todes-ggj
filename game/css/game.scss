@@ -1,6 +1,6 @@
 canvas {
   position: absolute;
-  top: 0px;
+  top: 40px;
   left: 0px;
 
   margin: 0;
@@ -10,4 +10,13 @@ canvas {
   height: 100%;
 
   border: 5px solid red;
+}
+
+#controls{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+
+  z-index: 10;
+  
 }
