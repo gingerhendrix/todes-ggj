@@ -9,6 +9,7 @@ map '/assets' do
   environment.append_path 'assets'
   environment.append_path 'css'
   environment.append_path 'js'
+  environment.append_path 'tests'
   environment.append_path 'tpl'
 
   run environment

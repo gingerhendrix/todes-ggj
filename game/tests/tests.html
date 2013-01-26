@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Tests</title>
+
+    <link href="/assets/mocha.css" rel="stylesheet">
+    <script src="/assets/mocha.js"></script>
+    <script>mocha.setup('bdd');</script>
+
+    <script src="/assets/chai.js"></script>
+    <script src="/assets/tests.js"></script>
+
+    <script>
+      window.onload = function() {
+        var runner = mocha.run();
+
+        runner.on('test end', function(test){
+          console.log(test.fullTitle());
+        });
+      };
+    </script>
+  </head>
+
+  <body><div id="mocha"></div></body>
+</html>
