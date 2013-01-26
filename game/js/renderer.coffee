@@ -23,7 +23,7 @@ class @Renderer
 
     @game.entities().forEach (e) =>
       @ctx.fillStyle = e.color
-      @ctx.fillRect @transform(e.x, e.y, e.width, e.height)...
+      @ctx.fillRect @transform(e.position[0], e.position[1], e.width, e.height)...
 
   transform: (ordinates...) ->
     ordinates.inGroupsOf(2).map((o) => [o[0] * @width, o[1] * @height]).flatten()

@@ -14,4 +14,4 @@ $ ->
   exports.controller = new Controller document.body, game
 
   renderer.start()
-  game.timer.start()
+  #game.timer.start()

@@ -1,23 +1,25 @@
 class @Game
   constructor: () ->
-    @players = [new PlayerEntity(x: 0.2, color: 'red'), new PlayerEntity(x: 0.7, color: 'blue')]
+    @players = [
+      new PlayerEntity(position: [0.2, 0.6], color: 'red'),
+      new PlayerEntity(position: [0.7, 0.6], color: 'blue')
+    ]
     @land = new LandEntity()
     @ball = new BallEntity()
     @physics = new Physics(@)
     @timer = new Interval(1.second() / @ticksPerSecond, @tick)
 
   entities: ->
-    [@land, @players..., @ball]
+    [@players[0], @ball]
+    #[@land, @players..., @ball]
 
-  ticksPerSecond: 50
+  ticksPerSecond: 5
 
   tick: =>
     @lastTime ||= new Date
 
     msPast = (new Date) - @lastTime
-    ticksPast = msPast / (1.second() / @ticksPerSecond)
 
-    ticksPast.times =>
-      @physics.advance(@ticksPerSecond)
+    @physics.advance msPast/1000
 
     @lastTime = new Date
