@@ -52,7 +52,7 @@ class @BallEntity extends Entity
 
   width: 0.01
   height: 0.01
-  velocity: [0.1*RIGHT, 0.2*UP] 
+  velocity: [0.05*RIGHT, 0.3*UP] 
   forces: [[0, GRAVITY]]
 
 

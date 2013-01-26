@@ -18,21 +18,41 @@ class @Physics
         # Reflect velocity vector
        
         #### Simplified aligned rectangles algorithm
-
+        BOUNCE = 0.6
         # Enumerate edges, check if we crossed them
-        if (e.initial.position[0] + e.width) < collision.minX() and (e.position[0] + e.width) > collision.minX() or #Crossed the left edge
-           (e.initial.position[0]) > collision.maxX() and (e.position[0]) < collision.maxX() #Crossed the right edge
-          console.log "Vertical Collision"
-          e.position[0] = e.initial.position[0] # Subtract bounce term if < 1
-          e.velocity[0] = e.velocity[0] * -1
-        else if (e.initial.position[1] + e.height) < collision.minY() and (e.position[1] + e.height) > collision.minY() or #Crossed the top edge
-           (e.initial.position[1]) > collision.maxY() and (e.position[1]) < collision.maxY() #Crossed the bottom edge
+        if (e.initial.position[0] + e.width) < collision.minX() and (e.position[0] + e.width) > collision.minX() #Crossed the left edge
           console.log "Horizontal Collision"
-          e.position[1] = e.initial.position[1] # Subtract bounce term if < 1
-          e.velocity[1] = e.velocity[1] * -1
+          dx = e.initial.position[0] - e.position[0]
+          dline = (e.initial.position[0] + e.width) - collision.minX()
+
+          e.position[0] = e.initial.position[0] + dline - (dx - dline)*BOUNCE # Subtract bounce term if < 1
+          e.velocity[0] = e.velocity[0] * -BOUNCE
+
+        else if (e.initial.position[0]) > collision.maxX() and (e.position[0]) < collision.maxX() #Crossed the right edge
+          console.log "Horizontal Collision"
+          dx = e.initial.position[0] - e.position[0]
+          dline = (e.initial.position[0] + e.width) - collision.maxX()
+
+          e.position[0] = e.initial.position[0] + dline - (dx - dline)*BOUNCE # Subtract bounce term if < 1
+          e.velocity[0] = e.velocity[0] * -BOUNCE
+
+        else if (e.initial.position[1] + e.height) < collision.minY() and (e.position[1] + e.height) > collision.minY()  #Crossed the top edge
+          console.log "Vertical Collision"
+          dy = e.initial.position[1] - e.position[1]
+          dline = (e.initial.position[1] + e.width) - collision.minY()
+
+          e.position[1] = e.initial.position[1] + dline - (dy - dline)*BOUNCE # Subtract bounce term if < 1
+          e.velocity[1] = e.velocity[1] * -BOUNCE
 
 
- 
+        else if (e.initial.position[1]) > collision.maxY() and (e.position[1]) < collision.maxY() #Crossed the bottom edge
+          console.log "Vertical Collision"
+          dy = e.initial.position[1] - e.position[1]
+          dline = (e.initial.position[1] + e.width) - collision.maxY()
+
+          e.position[1] = e.initial.position[1] + dline - (dy - dline)*BOUNCE # Subtract bounce term if < 1
+          e.velocity[1] = e.velocity[1] * -BOUNCE
+
   advanceMotion: (e, t) ->
     e.initial = 
       position: e.position
