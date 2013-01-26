@@ -30,7 +30,7 @@ class @Entity
    @position[1] + @height
  
   isMoving: ->
-    return false if [@velocity...,@acceleration...,@forces...].all (delta) -> (delta < ALMOST_ZERO and delta > -ALMOST_ZERO)
+    return false if [@velocity...,(Math.abs(@initial.velocity[i] - @velocity[i]) for vel, i in @velocity)...].all (delta) -> ( Math.abs(delta) < STOPPED )
     return true
 
 class @LandEntity extends Entity
@@ -48,6 +48,7 @@ class @PlayerEntity extends Entity
       walkingSpeed: 0.1
       width: 0.1
       height: 0.1
+      forces: [[0, GRAVITY]]
 
   moving: (dir) ->
     @initial.velocity[0] = @velocity[0] = dir * @walkingSpeed 
@@ -59,8 +60,6 @@ class @PlayerEntity extends Entity
 class @BallEntity extends Entity
   constructor: (attrs={}) ->
     super defaults attrs,
-      position: [0.1, 0.5]
       width: 0.01
       height: 0.01
-      velocity: [0.05*RIGHT, 0.3*UP] 
       forces: [[0, GRAVITY]]

@@ -21,8 +21,6 @@ class @Physics
       # Reflect velocity vector
      
       #### Simplified aligned rectangles algorithm
-      BOUNCE = 0.6
-      FRICTION = 0.5
       # Enumerate edges, check if we crossed them
       if (e.initial.position[0] + e.width) - collision.minX() < ALMOST_ZERO and 
           (e.position[0] + e.width) - collision.minX() > ALMOST_ZERO #Crossed the left edge
@@ -31,10 +29,10 @@ class @Physics
         dx = e.initial.position[0] - e.position[0]
         dline = (e.initial.position[0] + e.width) - collision.minX()
 
-        e.position[0] = e.initial.position[0] + dline - (dx - dline)*BOUNCE # Subtract bounce term if < 1
+        e.position[0] = e.initial.position[0] + dline - (dx - dline) * BOUNCE # Subtract bounce term if < 1
         e.velocity[0] = e.velocity[0] * -BOUNCE
 
-        e.velocity[1] = e.velocity[1] * FRICTION
+        e.velocity[1] = e.velocity[1] * (1-FRICTION)
 
       else if (e.initial.position[0]) - collision.maxX() > ALMOST_ZERO and 
               (e.position[0]) - collision.maxX() < ALMOST_ZERO #Crossed the right edge
