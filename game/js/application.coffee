@@ -3,5 +3,6 @@
 #= require_tree .
 
 $ ->
-  (exports.renderer = new Renderer(document.getElementById('game'))).start()
-  exports.ctx = renderer.ctx
+  canvas = $('canvas').get 0
+  exports.game = new Game
+  exports.renderer = new Renderer(game, canvas)

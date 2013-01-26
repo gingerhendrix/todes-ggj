@@ -1,13 +1,11 @@
 FPS = 30
 
 class @Renderer
-  constructor: (@canvas) ->
+  constructor: (@game, @canvas) ->
     @setupCanvas()
 
     @timer = new Interval(FPS, @loop)
     @ctx = @canvas.getContext('2d')
-
-    @entities = [new LandEntity(), new PlayerEntity(x: 0.2, color: 'red'), new PlayerEntity(x: 0.7, color: 'blue'), new BallEntity()]
 
   setupCanvas: ->
     @width = @canvas.width = window.innerWidth
@@ -23,7 +21,7 @@ class @Renderer
   loop: =>
     @clear()
 
-    @entities.forEach (e) =>
+    @game.entities.forEach (e) =>
       @ctx.fillStyle = e.color
       @ctx.fillRect @transform(e.x, e.y, e.width, e.height)...
 
