@@ -3,9 +3,9 @@ class @Physics
 
   advance: (t) ->
     @game.entities().forEach (e) =>
-      @advanceMotion(e, t)
+      @advanceMotion(e, t) if e.isMoving()
     @game.entities().forEach (e) =>
-      @handleCollision(e)
+      @handleCollision(e) if e.isMoving()
 
   handleCollision: (e) ->
     collisions =  @game.entities().findAll ((e2) => @detectCollision(e, e2)), @game.entities()

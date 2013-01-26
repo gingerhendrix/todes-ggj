@@ -10,8 +10,7 @@ class @Game
     @timer = new Interval(1.second() / @ticksPerSecond, @tick)
 
   entities: ->
-    [@land, @ball]
-    #[@land, @players..., @ball]
+    [@land, @players..., @ball]
 
   ticksPerSecond: 50 
 

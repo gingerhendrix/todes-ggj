@@ -1,12 +1,21 @@
-class @Entity
-  position: [0, 0]
-  velocity: [0, 0]
-  acceleration: [0, 0]
-  forces: []
+defaults = (t, s) -> Object.merge s, t, true
 
-  width: 0
-  height: 0
-  color: '#000'
+class @Entity
+  constructor: (attrs={}) ->
+    attrs = defaults attrs,
+      position: [0, 0]
+      velocity: [0, 0]
+      acceleration: [0, 0]
+      initial:
+        position: [0, 0]
+        velocity: [0, 0]
+        acceleration: [0, 0]
+      forces: []
+      width: 0
+      height: 0
+      color: '#000'
+    
+    @[key] = value for own key, value of attrs
 
   minX: ->
     @position[0]
@@ -19,50 +28,39 @@ class @Entity
 
   maxY: ->
    @position[1] + @height
-
-  constructor: (attrs={}) ->
-
-    @initialize?()
-    @[key] = value for own key, value of attrs
+ 
+  isMoving: ->
+    return false if [@velocity...,@acceleration...,@forces...].all (delta) -> (delta < ALMOST_ZERO and delta > -ALMOST_ZERO)
+    return true
 
 class @LandEntity extends Entity
-  position: [0, 0.7]
-
-  width: 1
-  height: 0.3
+  constructor: (attrs={}) ->
+    super defaults attrs, 
+      position: [0, 0.7]
+      width: 1
+      height: 0.3
 
 class @PlayerEntity extends Entity
-  initialize: ->
-
-  walkingSpeed: 0.1
-  position: [0, 0.6]
-
-  width: 0.1
-  height: 0.1
+  constructor: (attrs={}) ->
+    super defaults attrs, 
+      width: 0.02
+      height: 0.1
+      walkingSpeed: 0.1
+      width: 0.1
+      height: 0.1
 
   moving: (dir) ->
-    @velocity[0] = dir * @walkingSpeed #???
+    @initial.velocity[0] = @velocity[0] = dir * @walkingSpeed 
  
   stop: (dir) ->
-    @velocity[0] = 0 #Really
+    @initial.velocity[0] = @velocity[0] = 0
 
 
 class @BallEntity extends Entity
-  position: [0.1, 0.5]
-
-  width: 0.01
-  height: 0.01
-  velocity: [0.05*RIGHT, 0.3*UP] 
-  forces: [[0, GRAVITY]]
-
-
-  #initialize: ->
-    #gravity =
-      #x: 0
-      #y: 0
-
-      #a:
-        #y: 1 / 9.81
-        #x: 0
-
-    #@forces = [gravity]
+  constructor: (attrs={}) ->
+    super defaults attrs,
+      position: [0.1, 0.5]
+      width: 0.01
+      height: 0.01
+      velocity: [0.05*RIGHT, 0.3*UP] 
+      forces: [[0, GRAVITY]]
