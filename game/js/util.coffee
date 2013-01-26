@@ -10,3 +10,6 @@ class @Interval
   stop: ->
     clearInterval(@interval)
     @running = false
+
+
+exports.defaults = (t, s) -> Object.merge s, t, true

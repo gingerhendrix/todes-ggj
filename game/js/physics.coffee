@@ -32,7 +32,7 @@ class @Physics
         e.position[0] = e.initial.position[0] + dline - (dx - dline) * BOUNCE # Subtract bounce term if < 1
         e.velocity[0] = e.velocity[0] * -BOUNCE
 
-        e.velocity[1] = e.velocity[1] * (1-FRICTION)
+        e.velocity[1] = e.velocity[1] * (1 - FRICTION)
 
       else if (e.initial.position[0]) - collision.maxX() > ALMOST_ZERO and 
               (e.position[0]) - collision.maxX() < ALMOST_ZERO #Crossed the right edge
@@ -44,7 +44,7 @@ class @Physics
         e.position[0] = e.initial.position[0] + dline - (dx - dline)*BOUNCE # Subtract bounce term if < 1
         e.velocity[0] = e.velocity[0] * -BOUNCE
 
-        e.velocity[1] = e.velocity[1] * FRICTION
+        e.velocity[1] = e.velocity[1] * (1 - FRICTION)
 
       else if (e.initial.position[1] + e.height) - collision.minY() < ALMOST_ZERO  and
               (e.position[1] + e.height) - collision.minY() > ALMOST_ZERO #Crossed the top edge
@@ -56,7 +56,7 @@ class @Physics
         e.position[1] = e.initial.position[1] + dline - (dy - dline)*BOUNCE # Subtract bounce term if < 1
         e.velocity[1] = e.velocity[1] * -BOUNCE
 
-        e.velocity[0] = e.velocity[0] * FRICTION
+        e.velocity[0] = e.velocity[0] * (1 - FRICTION)
 
 
       else if (e.initial.position[1]) - collision.maxY() > ALMOST_ZERO and 
@@ -69,7 +69,9 @@ class @Physics
         e.position[1] = e.initial.position[1] + dline - (dy - dline)*BOUNCE # Subtract bounce term if < 1
         e.velocity[1] = e.velocity[1] * -BOUNCE
 
-        e.velocity[0] = e.velocity[0] * FRICTION
+        e.velocity[0] = e.velocity[0] * (1 - FRICTION)
+
+        
 
   advanceMotion: (e, t) ->
     e.initial = 

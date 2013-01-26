@@ -1,5 +1,7 @@
 #= require ./vendor/zepto.min.js
 #= require_tree ./vendor
+#= require ./constants
+#= require ./entities/base
 #= require_tree .
 
 
