@@ -16,10 +16,10 @@ class @Physics
         position[i] = initial.position[i] + (initial.velocity[i] * t)
 
         velocity[i] = initial.velocity[i] + (0.5 * initial.acceleration[i] * t * t)
-        velocity[i] = 0 if velocity[i] < 0.000001  and velocity[i] > -0.000001
+        #velocity[i] = 0 if velocity[i] < ALMOST_ZERO and velocity[i] > ALMOST_ZERO
 
         acceleration[i] = e.forces.sum (f) -> f[i] if e.forces.length > 0
-        acceleration[i] = 0 if acceleration[i] < 0.000001 and acceleration[i] > -0.000001
+        #acceleration[i] = 0 if acceleration[i] < ALMOST_ZERO and acceleration[i] > ALMOST_ZERO
 
       e.position = position
       e.velocity = velocity

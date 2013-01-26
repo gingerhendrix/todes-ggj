@@ -29,10 +29,10 @@ class @PlayerEntity extends Entity
   height: 0.1
 
   moving: (dir) ->
-    #@velocity[0] = dir * @walkingSpeed #???
+    @velocity[0] = dir * @walkingSpeed #???
  
   stop: (dir) ->
-    #@velocity[0] = 0 #Really
+    @velocity[0] = 0 #Really
 
 
 class @BallEntity extends Entity
@@ -40,7 +40,7 @@ class @BallEntity extends Entity
 
   width: 0.1
   height: 0.1
-  forces: [[0, 0.02]]
+  forces: [[0, GRAVITY]]
 
 
   #initialize: ->
