@@ -11,10 +11,11 @@
 
 $ ->
   canvas = $('canvas').get 0
-  exports.game = new Game(width: 2, height: 1)
-  exports.renderer = new Renderer(game, canvas)
-  exports.controller = new Controller document.body, game
-  console.log $('[data-start]')
-  $('[data-start]').click -> console.log "Started"; renderer.start(); game.timer.start()
-  $('[data-stop]').click -> console.log "Stopped"; renderer.stop(); game.timer.stop()
+
+  exports.world = new World(width: 2, height: 1)
+  exports.renderer = new Renderer(world, canvas)
+  exports.controller = new Controller document.body, world
+
+  $('[data-start]').click -> console.log "Started"; renderer.start(); world.timer.start()
+  $('[data-stop]').click -> console.log "Stopped"; renderer.stop(); world.timer.stop()
 

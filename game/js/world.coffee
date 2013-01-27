@@ -1,4 +1,4 @@
-class @Game
+class @World
   constructor: (attrs) ->
     defaults attrs,
       width: 2

@@ -1,8 +1,8 @@
 class @Controller
-  constructor: (@el, @game)->
+  constructor: (@el, @world)->
     @$el =  $(@el)
     @initializeEvents()
-    @currentPlayer = @game.players[0]
+    @currentPlayer = @world.players[0]
 
   initializeEvents: ->
     @$el.keydown (e) =>

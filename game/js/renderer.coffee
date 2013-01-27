@@ -1,13 +1,13 @@
 FPS = 30
 
 class @Renderer
-  constructor: (@game, @canvas) ->
-    @aspectRatio = @game.width/@game.height
+  constructor: (@world, @canvas) ->
+    @aspectRatio = @world.width/@world.height
     @timer = new Interval(FPS, @loop)
     @ctx = @canvas.getContext('2d')
     @setupCanvas()
 
-    @sprites = @game.entities().map (e) => new e.constructor.sprite(@, e)
+    @sprites = @world.entities().map (e) => new e.constructor.sprite(@, e)
 
   setupCanvas: ->
     [width, height] = [window.innerWidth - 10, window.innerHeight - 50]
