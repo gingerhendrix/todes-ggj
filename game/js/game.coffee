@@ -13,10 +13,8 @@ class @Game
       new PlayerEntity(position: [1.25, 0.0], color: 'red', velocity: [-0.01, 0])
     ]
 
-    @land = [new LandEntity(position: [0, 0.5], width: 0.5, height: 0.5),
-             new LandEntity(position: [0.5, 0.7], width: 0.5, height: 0.3),
-             new LandEntity(position: [1.0, 0.8], width: 0.5, height: 0.2),
-             new LandEntity(position: [1.5, 0.6], width: 0.5, height: 0.4)]
+    @land = @generateLand(20)
+    console.log @land
     
     @ball = new BallEntity(color: 'green', position: [0.1, 0.3], velocity: [0.3*RIGHT, 0.4*UP])
 
@@ -33,6 +31,26 @@ class @Game
     @timer = new Interval(1.second() / @ticksPerSecond, @tick)
     
     @explosion = false
+
+  generateLand : (n) ->
+    [widths, heights] = [[], []]
+    n.times ->
+      widths.push(( (Math.random() * 10 ) %10 )/10)
+    m = widths.sum()
+    widths = widths.map (w) => w/m * @width
+    n.times (n) ->
+      if n > 0 then start = heights[n-1] else start = 0.5
+      heights[n] = start + (Math.random()-0.5)*0.3
+      heights[n] = 0.1 if heights[n] < 0
+    lands = []
+    n.times (n) =>
+      if n > 0 then start = (lands[n-1].position[0] + widths[n-1]) else start = 0
+      lands[n] = new LandEntity
+        position: [start, @height - heights[n]]
+        width: widths[n] + ALMOST_ZERO
+        height: heights[n]
+
+    lands
 
   entities: ->
     es = [@land..., @players...]
