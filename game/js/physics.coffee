@@ -4,8 +4,10 @@ class @Physics
   advance: (t) ->
     @game.entities().forEach (e) =>
       e.onTick(t)
+
     @game.entities().forEach (e) =>
       @advanceMotion(e, t) if e.isMoving()
+
     @game.entities().forEach (e) =>
       @handleCollision(e) if e.isMoving()
 
@@ -14,8 +16,6 @@ class @Physics
     if collisions.length >  0
       collision = collisions[0]
       
-      #console.log "Collision", e, collisions
-
       #### General Algorithm
       # Find edge of collision
       # Compute intersection/reflection
@@ -53,7 +53,7 @@ class @Physics
         #console.log "Vertical Collision"
 
         dy = e.initial.position[1] - e.position[1]
-        dline = (e.initial.position[1] + e.width) - collision.minY()
+        dline = (e.initial.position[1] + e.height) - collision.minY()
 
         e.position[1] = e.initial.position[1] + dline - (dy - dline)*BOUNCE # Subtract bounce term if < 1
         e.velocity[1] = e.velocity[1] * -BOUNCE
@@ -66,7 +66,7 @@ class @Physics
         console.log "Vertical Collision"
 
         dy = e.initial.position[1] - e.position[1]
-        dline = (e.initial.position[1] + e.width) - collision.maxY()
+        dline = (e.initial.position[1] + e.height) - collision.maxY()
 
         e.position[1] = e.initial.position[1] + dline - (dy - dline)*BOUNCE # Subtract bounce term if < 1
         e.velocity[1] = e.velocity[1] * -BOUNCE

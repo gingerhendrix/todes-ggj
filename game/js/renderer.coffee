@@ -2,14 +2,24 @@ FPS = 30
 
 class @Renderer
   constructor: (@game, @canvas) ->
-    @setupCanvas()
-
+    @aspectRatio = @game.width/@game.height
     @timer = new Interval(FPS, @loop)
     @ctx = @canvas.getContext('2d')
+    @setupCanvas()
 
   setupCanvas: ->
-    @width = @canvas.width = window.innerWidth
-    @height = @canvas.height = window.innerHeight
+    [width, height] = [window.innerWidth - 10, window.innerHeight - 50]
+
+    if height * @aspectRatio < width
+      @height = @canvas.height = height
+      @width = @canvas.width = height * @aspectRatio
+      @widthRatio = 1/@aspectRatio
+      @heightRatio = 1
+    else
+      @width = @canvas.width = width
+      @height = @canvas.height = height/@aspectRatio
+      @widthRatio = 1
+      @heightRatio = @aspectRatio
 
   start: -> @timer.start()
   stop: -> @timer.stop()
@@ -26,4 +36,4 @@ class @Renderer
       @ctx.fillRect @transform(e.position[0], e.position[1], e.width, e.height)...
 
   transform: (ordinates...) ->
-    ordinates.inGroupsOf(2).map((o) => [o[0] * @width, o[1] * @height]).flatten()
+    ordinates.inGroupsOf(2).map((o) => [o[0] * @width * @widthRatio, o[1] * @height * @heightRatio]).flatten()

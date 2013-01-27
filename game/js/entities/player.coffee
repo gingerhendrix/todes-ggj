@@ -7,8 +7,8 @@ class @PlayerEntity extends EntityBase
       forces: [[0, GRAVITY]]
 
   moving: (dir) ->
-    @initial.velocity[0] = @velocity[0] = dir * @walkingSpeed 
+    #@initial.velocity[0] = @velocity[0] = dir * @walkingSpeed 
  
   stop: (dir) ->
-    @initial.velocity[0] = @velocity[0] = 0
+    #@initial.velocity[0] = @velocity[0] = 0
 
