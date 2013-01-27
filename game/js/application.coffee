@@ -2,7 +2,10 @@
 #= require_tree ./vendor
 #= require ./constants
 #= require ./util
+#= require ./sprites/base
+#= require_tree ./sprites
 #= require ./entities/base
+#= require_tree ./entities
 #= require_tree .
 
 

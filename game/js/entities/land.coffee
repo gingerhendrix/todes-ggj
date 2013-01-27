@@ -4,3 +4,6 @@ class @LandEntity extends EntityBase
       position: [0, 0.7]
       width: 1
       height: 0.3
+
+  isMovable: ->
+    return false
