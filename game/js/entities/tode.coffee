@@ -12,7 +12,7 @@ class @TodeEntity extends EntityBase
         width: 438
         height: 306
 
-      velocity: [Math.random(), 0]
+      velocity: [Math.random() / 4, 0]
       position: [Math.random(), 0.0]
       color: ['red', 'blue'].sample()
 
