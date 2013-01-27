@@ -15,13 +15,12 @@ class @Renderer
     if height * @aspectRatio < width
       @height = @canvas.height = height
       @width = @canvas.width = height * @aspectRatio
-      @widthRatio = 1/@aspectRatio
-      @heightRatio = 1
     else
       @width = @canvas.width = width
-      @height = @canvas.height = height/@aspectRatio
-      @widthRatio = 1
-      @heightRatio = @aspectRatio
+      @height = @canvas.height = width/@aspectRatio
+
+    @widthRatio = 1/@aspectRatio
+    @heightRatio = 1
 
   start: -> @timer.start()
   stop: -> @timer.stop()
