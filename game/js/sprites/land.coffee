@@ -1,34 +1,20 @@
 class @LandSprite extends SpriteBase
   render: (renderer, ctx) ->
-    image = new Image
-    image.src = 'img/ground.png'
-    imageWidth = 129
-    imageHeight = 250
+    image = IMAGES.ground
 
-    scale = [1/50, 1/50]
+    imageWidth = 2508
+    imageHeight = 1218
 
-    #tileWidth = imageWidth*scale[0]
-    #tileHeight = imageWidth*scale[1]
-
-    
-    
-    #ntx = Math.ceil(@entity.width/tileWidth)
-    #nty = Math.ceil(@entity.height/tileHeight)
-
-    #tx0 = @entity.x - Math.ceil(@entity.x/tileWidth)*tileWidth
-    #ty0 = @entity.y - Math.ceil(@entity.y/tileHeight)*tileHeight
-
-    
-
-
-    #nty.times =>
-      #ntx.times =>
-        #tile = 
-
-
-
-
-    sourcePosition =  @transform renderer, @entity.position[0], 
+    #scale = [1/50, 1/50]
 
     [x, y, width, height] = @transform(renderer, @entity.position[0], @entity.position[1], @entity.width, @entity.height)
-    ctx.drawImage image, x, y, width, height
+
+    source = 
+      x: x % imageWidth
+      y: y % imageHeight
+      width: width % imageWidth
+      height: height % imageHeight
+    
+    console.log image, source.x, source.y, source.width, source.height, x, y, width, height
+
+    ctx.drawImage image, Math.round(source.x), Math.round(source.y), Math.round(source.width), Math.round(source.height), Math.round(x), Math.round(y), Math.round(width), Math.round(height)

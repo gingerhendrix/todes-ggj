@@ -13,6 +13,14 @@ window.exports = window
 $ ->
   canvas = $('canvas').get(0)
 
+  img = (src) ->
+    i = new Image()
+    i.src = src
+    i
+
+  exports.IMAGES =
+    ground: img('img/ground.png')
+
   exports.game = new Game(canvas)
 
   $('[data-start]').click ->
