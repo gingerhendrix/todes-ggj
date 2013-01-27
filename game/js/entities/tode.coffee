@@ -7,7 +7,7 @@ class @TodeEntity extends EntityBase
       height: 0.0306 * 2
       walkingSpeed: 0.1
       forces: [[0, GRAVITY]]
-      image: 
+      image:
         src: 'img/frog.png'
         width: 438
         height: 306
