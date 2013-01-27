@@ -1,5 +1,5 @@
 class @Physics
-  constructor: (@game) ->
+  constructor: (@world) ->
     @timer = new Interval(1.second() / @ticksPerSecond, @tick)
 
   tick: =>
@@ -13,17 +13,17 @@ class @Physics
   pause: -> @timer.stop()
 
   advance: (t) ->
-    @game.entities().forEach (e) =>
+    @world.entities().forEach (e) =>
       e.onTick(t)
 
-    @game.entities().forEach (e) =>
+    @world.entities().forEach (e) =>
       @advanceMotion(e, t) if e.isMoving()
 
-    @game.entities().forEach (e) =>
+    @world.entities().forEach (e) =>
       @handleCollision(e) if e.isMoving()
 
   handleCollision: (entity) ->
-    collisions =  @game.entities().findAll ((other) => @detectCollision(entity, other)), @game.entities()
+    collisions =  @world.entities().findAll ((other) => @detectCollision(entity, other)), @world.entities()
     collisions.forEach (collision) =>
       if collision.isSolid()
         @doBounce(entity, collision)
