@@ -35,7 +35,5 @@ class @TodeEntity extends EntityBase
 
   onTick: (t) -> #
 
-  isCurrent: ->
-
   heal: (points) -> @health += points
   sadden: (points) -> @health -= points
