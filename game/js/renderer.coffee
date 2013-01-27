@@ -33,4 +33,3 @@ class @Renderer
     @clear()
 
     sprite.render(@ctx) for sprite in @sprites
-    

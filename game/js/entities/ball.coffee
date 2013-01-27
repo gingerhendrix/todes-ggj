@@ -19,6 +19,3 @@ class @BallEntity extends EntityBase
       @color = "rgb(255, 0, 0)"
     else
       @trigger 'explode'
-
-
-

@@ -8,6 +8,7 @@
 #= require_tree ./entities
 #= require_tree .
 
+window.exports = window
 
 $ ->
   canvas = $('canvas').get(0)

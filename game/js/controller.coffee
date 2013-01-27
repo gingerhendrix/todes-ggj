@@ -24,10 +24,7 @@ class @Controller
     console.log "right"
     @currentPlayer.moving RIGHT
     @$el.one 'keyup', (e) => @stop
-  
+
   stop: ->
     console.log "stop"
     @currentPlayer.stop()
-
-
-

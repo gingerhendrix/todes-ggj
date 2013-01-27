@@ -42,10 +42,10 @@ class @Physics
     # Compute intersection/reflection
     # Move point to reflection point
     # Reflect velocity vector
-   
+
     #### Simplified aligned rectangles algorithm
     # Enumerate edges, check if we crossed them
-    if (e.initial.position[0] + e.width) - collision.minX() < ALMOST_ZERO and 
+    if (e.initial.position[0] + e.width) - collision.minX() < ALMOST_ZERO and
         (e.position[0] + e.width) - collision.minX() > ALMOST_ZERO #Crossed the left edge
 
       #console.log "Horizontal Collision"
@@ -57,7 +57,7 @@ class @Physics
 
       e.velocity[1] = e.velocity[1] * (1 - FRICTION)
 
-    else if (e.initial.position[0]) - collision.maxX() > ALMOST_ZERO and 
+    else if (e.initial.position[0]) - collision.maxX() > ALMOST_ZERO and
             (e.position[0]) - collision.maxX() < ALMOST_ZERO #Crossed the right edge
       #console.log "Horizontal Collision"
 
@@ -81,8 +81,7 @@ class @Physics
 
       e.velocity[0] = e.velocity[0] * (1 - FRICTION)
 
-
-    else if (e.initial.position[1]) - collision.maxY() > ALMOST_ZERO and 
+    else if (e.initial.position[1]) - collision.maxY() > ALMOST_ZERO and
             (e.position[1]) - collision.maxY() < ALMOST_ZERO #Crossed the bottom edge
       console.log "Vertical Collision"
 
@@ -95,7 +94,7 @@ class @Physics
       e.velocity[0] = e.velocity[0] * (1 - FRICTION)
 
   advanceMotion: (e, t) ->
-    e.initial = 
+    e.initial =
       position: e.position
       velocity: e.velocity
       acceleration: e.acceleration
@@ -116,14 +115,12 @@ class @Physics
     e.position = position
     e.velocity = velocity
     e.acceleration = acceleration
-    
 
   detectCollision: (e1, e2) ->
-     return false if e1 == e2
-     return false if e1.maxX() - e2.minX() < ALMOST_ZERO #To the left
-     return false if e1.minX() - e2.maxX() > ALMOST_ZERO #To the right
-     return false if e1.maxY() - e2.minY() < ALMOST_ZERO #Above
-     return false if e1.minY() - e2.maxY() > ALMOST_ZERO #Below
-     return true
+    return false if e1 == e2
+    return false if e1.maxX() - e2.minX() < ALMOST_ZERO #To the left
+    return false if e1.minX() - e2.maxX() > ALMOST_ZERO #To the right
+    return false if e1.maxY() - e2.minY() < ALMOST_ZERO #Above
+    return false if e1.minY() - e2.maxY() > ALMOST_ZERO #Below
 
-  
+    true

@@ -10,13 +10,13 @@ class @ExplosionEntity extends EntityBase
       blastSpeed: 10
       blastTime: 0.5
       affected: []
- 
+
   isMoving: ->
     return true
 
   isMovable: ->
     return false
- 
+
   isDamaging: ->
     true
 
@@ -30,4 +30,3 @@ class @ExplosionEntity extends EntityBase
     @height =  @time/(@blastSpeed/2)
     if @time > @blastTime
       @trigger 'done'
-

@@ -13,13 +13,12 @@ class @PlayerEntity extends EntityBase
         height: 306
 
   moving: (dir) ->
-    #@initial.velocity[0] = @velocity[0] = dir * @walkingSpeed 
- 
+    #@initial.velocity[0] = @velocity[0] = dir * @walkingSpeed
+
   stop: (dir) ->
     #@initial.velocity[0] = @velocity[0] = 0
-    #
-  onTick: (t) ->
-    
+
+  onTick: (t) -> #
 
   heal: (points) -> @health += points
   sadden: (points) -> @health -= points
