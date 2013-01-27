@@ -29,5 +29,7 @@ class @Renderer
 
   loop: =>
     @clear()
+   
+    @world.viewport.sprite.render(@, @ctx)
 
     entity.sprite.render(@, @ctx) for entity in @world.entities

@@ -16,8 +16,11 @@ class @EntityBase extends @Events
 
     @[key] = value for own key, value of attrs
 
+    @sprite ||= @constructSprite()
+
+  constructSprite: () ->
     spriteClass = @constructor.spriteClass
-    @sprite ||= new spriteClass(@)
+    sprite = new spriteClass(@)
 
   minX: ->
     @position[0]

@@ -9,7 +9,6 @@ class @ExplosionEntity extends EntityBase
       time: 0
       blastSpeed: 10
       blastTime: 0.5
-      affected: []
 
   isMoving: ->
     return true

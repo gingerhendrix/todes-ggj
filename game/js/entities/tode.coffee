@@ -1,5 +1,5 @@
 class @TodeEntity extends EntityBase
-  @spriteClass = PlayerSprite
+  @spriteClass = TodeSprite
   constructor: (attrs={}) ->
     super defaults attrs,
       health: 0
@@ -8,7 +8,7 @@ class @TodeEntity extends EntityBase
       walkingSpeed: 0.1
       forces: [[0, GRAVITY]]
       image:
-        src: 'img/frog.png'
+        src: 'img/frog-right.png'
         width: 438
         height: 306
 
@@ -23,6 +23,8 @@ class @TodeEntity extends EntityBase
     #@initial.velocity[0] = @velocity[0] = 0
 
   onTick: (t) -> #
+
+  isCurrent: ->
 
   heal: (points) -> @health += points
   sadden: (points) -> @health -= points
