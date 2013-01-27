@@ -13,67 +13,71 @@ class @Physics
 
   handleCollision: (e) ->
     collisions =  @game.entities().findAll ((e2) => @detectCollision(e, e2)), @game.entities()
-    if collisions.length >  0
-      collision = collisions[0]
-      
-      #### General Algorithm
-      # Find edge of collision
-      # Compute intersection/reflection
-      # Move point to reflection point
-      # Reflect velocity vector
-     
-      #### Simplified aligned rectangles algorithm
-      # Enumerate edges, check if we crossed them
-      if (e.initial.position[0] + e.width) - collision.minX() < ALMOST_ZERO and 
-          (e.position[0] + e.width) - collision.minX() > ALMOST_ZERO #Crossed the left edge
+    collisions.forEach (collision) =>
+      if collision.isSolid()
+        @doBounce(e, collision)
+      if collision.isDamaging()
+        e.velocity[0] += 0.1
+        e.velocity[1] += 0.1
+        console.log "Explosion Damage", e, collision
 
-        #console.log "Horizontal Collision"
-        dx = e.initial.position[0] - e.position[0]
-        dline = (e.initial.position[0] + e.width) - collision.minX()
+  doBounce: (e, collision) ->
+    #### General Algorithm
+    # Find edge of collision
+    # Compute intersection/reflection
+    # Move point to reflection point
+    # Reflect velocity vector
+   
+    #### Simplified aligned rectangles algorithm
+    # Enumerate edges, check if we crossed them
+    if (e.initial.position[0] + e.width) - collision.minX() < ALMOST_ZERO and 
+        (e.position[0] + e.width) - collision.minX() > ALMOST_ZERO #Crossed the left edge
 
-        e.position[0] = e.initial.position[0] + dline - (dx - dline) * BOUNCE # Subtract bounce term if < 1
-        e.velocity[0] = e.velocity[0] * -BOUNCE
+      #console.log "Horizontal Collision"
+      dx = e.initial.position[0] - e.position[0]
+      dline = (e.initial.position[0] + e.width) - collision.minX()
 
-        e.velocity[1] = e.velocity[1] * (1 - FRICTION)
+      e.position[0] = e.initial.position[0] + dline - (dx - dline) * BOUNCE # Subtract bounce term if < 1
+      e.velocity[0] = e.velocity[0] * -BOUNCE
 
-      else if (e.initial.position[0]) - collision.maxX() > ALMOST_ZERO and 
-              (e.position[0]) - collision.maxX() < ALMOST_ZERO #Crossed the right edge
-        #console.log "Horizontal Collision"
+      e.velocity[1] = e.velocity[1] * (1 - FRICTION)
 
-        dx = e.initial.position[0] - e.position[0]
-        dline = (e.initial.position[0] + e.width) - collision.maxX()
+    else if (e.initial.position[0]) - collision.maxX() > ALMOST_ZERO and 
+            (e.position[0]) - collision.maxX() < ALMOST_ZERO #Crossed the right edge
+      #console.log "Horizontal Collision"
 
-        e.position[0] = e.initial.position[0] + dline - (dx - dline)*BOUNCE # Subtract bounce term if < 1
-        e.velocity[0] = e.velocity[0] * -BOUNCE
+      dx = e.initial.position[0] - e.position[0]
+      dline = (e.initial.position[0] + e.width) - collision.maxX()
 
-        e.velocity[1] = e.velocity[1] * (1 - FRICTION)
+      e.position[0] = e.initial.position[0] + dline - (dx - dline)*BOUNCE # Subtract bounce term if < 1
+      e.velocity[0] = e.velocity[0] * -BOUNCE
 
-      else if (e.initial.position[1] + e.height) - collision.minY() < ALMOST_ZERO  and
-              (e.position[1] + e.height) - collision.minY() > ALMOST_ZERO #Crossed the top edge
-        #console.log "Vertical Collision"
+      e.velocity[1] = e.velocity[1] * (1 - FRICTION)
 
-        dy = e.initial.position[1] - e.position[1]
-        dline = (e.initial.position[1] + e.height) - collision.minY()
+    else if (e.initial.position[1] + e.height) - collision.minY() < ALMOST_ZERO  and
+            (e.position[1] + e.height) - collision.minY() > ALMOST_ZERO #Crossed the top edge
+      #console.log "Vertical Collision"
 
-        e.position[1] = e.initial.position[1] + dline - (dy - dline)*BOUNCE # Subtract bounce term if < 1
-        e.velocity[1] = e.velocity[1] * -BOUNCE
+      dy = e.initial.position[1] - e.position[1]
+      dline = (e.initial.position[1] + e.height) - collision.minY()
 
-        e.velocity[0] = e.velocity[0] * (1 - FRICTION)
+      e.position[1] = e.initial.position[1] + dline - (dy - dline)*BOUNCE # Subtract bounce term if < 1
+      e.velocity[1] = e.velocity[1] * -BOUNCE
+
+      e.velocity[0] = e.velocity[0] * (1 - FRICTION)
 
 
-      else if (e.initial.position[1]) - collision.maxY() > ALMOST_ZERO and 
-              (e.position[1]) - collision.maxY() < ALMOST_ZERO #Crossed the bottom edge
-        console.log "Vertical Collision"
+    else if (e.initial.position[1]) - collision.maxY() > ALMOST_ZERO and 
+            (e.position[1]) - collision.maxY() < ALMOST_ZERO #Crossed the bottom edge
+      console.log "Vertical Collision"
 
-        dy = e.initial.position[1] - e.position[1]
-        dline = (e.initial.position[1] + e.height) - collision.maxY()
+      dy = e.initial.position[1] - e.position[1]
+      dline = (e.initial.position[1] + e.height) - collision.maxY()
 
-        e.position[1] = e.initial.position[1] + dline - (dy - dline)*BOUNCE # Subtract bounce term if < 1
-        e.velocity[1] = e.velocity[1] * -BOUNCE
+      e.position[1] = e.initial.position[1] + dline - (dy - dline)*BOUNCE # Subtract bounce term if < 1
+      e.velocity[1] = e.velocity[1] * -BOUNCE
 
-        e.velocity[0] = e.velocity[0] * (1 - FRICTION)
-
-        
+      e.velocity[0] = e.velocity[0] * (1 - FRICTION)
 
   advanceMotion: (e, t) ->
     e.initial = 

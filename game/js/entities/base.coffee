@@ -12,7 +12,7 @@ class @EntityBase extends @Events
       width: 0
       height: 0
       color: '#000'
-    
+
     @[key] = value for own key, value of attrs
 
   minX: ->
@@ -31,6 +31,13 @@ class @EntityBase extends @Events
     return false if [@velocity...,(Math.abs(@initial.velocity[i] - @velocity[i]) for vel, i in @velocity)...].all (delta) -> ( Math.abs(delta) < STOPPED )
     return true
 
+  isSolid: ->
+    return true
+
+  isDamaging: ->
+    return false
+
   onTick: (t) ->
 
+  onCollision: (entity) ->
 
