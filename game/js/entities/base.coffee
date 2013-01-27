@@ -26,6 +26,9 @@ class @EntityBase extends @Events
 
   maxY: ->
    @position[1] + @height
+
+  center: ->
+    [@position[0] + @width/2, @position[1] + @height/2]
  
   isMoving: ->
     return false if [@velocity...,(Math.abs(@initial.velocity[i] - @velocity[i]) for vel, i in @velocity)...].all (delta) -> ( Math.abs(delta) < STOPPED )
@@ -36,6 +39,9 @@ class @EntityBase extends @Events
 
   isDamaging: ->
     return false
+
+  isMovable: ->
+    return true
 
   onTick: (t) ->
 

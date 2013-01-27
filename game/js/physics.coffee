@@ -11,15 +11,19 @@ class @Physics
     @game.entities().forEach (e) =>
       @handleCollision(e) if e.isMoving()
 
-  handleCollision: (e) ->
-    collisions =  @game.entities().findAll ((e2) => @detectCollision(e, e2)), @game.entities()
+  handleCollision: (entity) ->
+    collisions =  @game.entities().findAll ((other) => @detectCollision(entity, other)), @game.entities()
     collisions.forEach (collision) =>
       if collision.isSolid()
-        @doBounce(e, collision)
-      if collision.isDamaging()
-        e.velocity[0] += 0.1
-        e.velocity[1] += 0.1
-        console.log "Explosion Damage", e, collision
+        @doBounce(entity, collision)
+      if collision.isDamaging() and entity.isMovable()
+        [cx, cy] = collision.center()
+        [ex, ey] = entity.center()
+        [dx, dy] = [cx-ex, cy-ey]
+        m = 1/Math.sqrt( dx*dx + dy*dy)
+        entity.velocity[0] += dx * m
+        entity.velocity[1] += dy * m
+        console.log "Explosion Damage", entity, collision
 
   doBounce: (e, collision) ->
     #### General Algorithm

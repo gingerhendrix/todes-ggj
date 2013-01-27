@@ -13,6 +13,9 @@ class @ExplosionEntity extends EntityBase
  
   isMoving: ->
     return true
+
+  isMovable: ->
+    return false
  
   isDamaging: ->
     true
