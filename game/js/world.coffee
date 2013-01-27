@@ -27,9 +27,6 @@ class @World
       @ball = false
     
     @physics = new Physics(@)
-    
-    @timer = new Interval(1.second() / @ticksPerSecond, @tick)
-    
     @explosion = false
 
   generateLand : (n) ->
@@ -59,11 +56,3 @@ class @World
     es
 
   ticksPerSecond: 60 
-
-  tick: =>
-    @lastTime ||= new Date
-    time = ((new Date) - @lastTime)/1000
-
-    @physics.advance time
-
-    @lastTime = new Date

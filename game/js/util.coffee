@@ -3,11 +3,11 @@ class @Interval
 
   constructor: (@ms, @fn) -> #
 
-  start: ->
+  start: =>
     @running = true
     @interval = setInterval(@fn, @ms)
 
-  stop: ->
+  stop: =>
     clearInterval(@interval)
     @running = false
 

@@ -1,5 +1,16 @@
 class @Physics
-  constructor: (@game) -> #
+  constructor: (@game) ->
+    @timer = new Interval(1.second() / @ticksPerSecond, @tick)
+
+  tick: =>
+    @lastTime ||= new Date
+    time = ((new Date) - @lastTime)/1000
+
+    @advance(time)
+    @lastTime = new Date
+
+  start: -> @timer.start()
+  pause: -> @timer.stop()
 
   advance: (t) ->
     @game.entities().forEach (e) =>

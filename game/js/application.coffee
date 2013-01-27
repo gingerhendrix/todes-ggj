@@ -10,12 +10,14 @@
 
 
 $ ->
-  canvas = $('canvas').get 0
+  canvas = $('canvas').get(0)
 
-  exports.world = new World(width: 2, height: 1)
-  exports.renderer = new Renderer(world, canvas)
-  exports.controller = new Controller document.body, world
+  exports.game = new Game(canvas)
 
-  $('[data-start]').click -> console.log "Started"; renderer.start(); world.timer.start()
-  $('[data-stop]').click -> console.log "Stopped"; renderer.stop(); world.timer.stop()
+  $('[data-start]').click ->
+    console.log 'Started'
+    game.start()
 
+  $('[data-stop]').click ->
+    console.log 'Stopped'
+    game.pause()
