@@ -1,0 +1,1 @@
+class @HeartBombWeapon extends WeaponBase
