@@ -27,13 +27,14 @@ class @Physics
     collisions.forEach (collision) =>
       if collision.isSolid()
         @doBounce(entity, collision)
+
       if collision.isDamaging() and entity.isMovable()
         [cx, cy] = collision.center()
         [ex, ey] = entity.center()
         [dx, dy] = [cx-ex, cy-ey]
         m = 2/Math.sqrt( dx*dx + dy*dy)
-        entity.velocity[0] += dx * m
-        entity.velocity[1] += dy * m
+        velocity = [entity.velocity[0] + dx * m, entity.velocity[1] + dy * m]
+        entity.velocity = velocity
         console.log "Explosion Damage", entity, collision
 
   doBounce: (e, collision) ->
@@ -95,9 +96,9 @@ class @Physics
 
   advanceMotion: (e, t) ->
     e.initial =
-      position: e.position
-      velocity: e.velocity
-      acceleration: e.acceleration
+      position: e.position.clone()
+      velocity: e.velocity.clone()
+      acceleration: e.acceleration.clone()
 
     position = [0, 0]
     velocity = [0, 0]

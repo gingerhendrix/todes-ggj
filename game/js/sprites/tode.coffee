@@ -2,10 +2,24 @@ class @TodeSprite extends SpriteBase
   render: (renderer, ctx) ->
     @saveAndRestore ctx, =>
       image = new Image()
-      image.src = @entity.image.src
+
+      src = "img/"
+      if @entity.velocity[1] < -0.05 #1.0725
+        src += 'leapfrog' #739x689
+        scale = [1, 1.33]
+      else
+        src += 'frog' #438x306 #1.4313
+        scale = [1, 1]
+
+      if @entity.velocity[0] > 0
+        src += '-right.png'
+      else
+        src += '-left.png'
+
+      image.src = src
 
       [x, y, width, height] = @transform(renderer, @entity.position[0], @entity.position[1], @entity.width, @entity.height)
-      ctx.drawImage image, x, y, width, height
+      ctx.drawImage image, x, y, width*scale[0], height*scale[1]
       #ctx.fillStyle = 'rgba(0,0,0,0.1)'
       #ctx.fillRect  x, y, width, height
 
