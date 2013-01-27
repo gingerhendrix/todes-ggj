@@ -18,10 +18,20 @@ class @TodeEntity extends EntityBase
       isCurrent: false
 
   smallJump: (dir) ->
-    @initial.velocity = @velocity = [0.1 * dir, 0.2 * UP]
+    return unless @canJump()
+    @initial.velocity = [0.1 * dir, 0.2 * UP]
+    @velocity = @initial.velocity.clone()
 
   bigJump: (dir) ->
-    @initial.velocity = @velocity = [0.2 * dir, 0.2 * UP]
+    return unless @canJump()
+    @initial.velocity = [0.2 * dir, 0.4 * UP]
+    @velocity = @initial.velocity.clone()
+
+  canJump: ->
+    not @inFlight()
+
+  inFlight: ->
+    Math.abs(@velocity[1]) > 0.01
 
   onTick: (t) -> #
 
