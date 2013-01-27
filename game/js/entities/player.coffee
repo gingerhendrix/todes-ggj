@@ -12,3 +12,4 @@ class @PlayerEntity extends EntityBase
   stop: (dir) ->
     #@initial.velocity[0] = @velocity[0] = 0
 
+@TodeEntity = PlayerEntity
