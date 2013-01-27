@@ -1,5 +1,5 @@
 class @SpriteBase extends Events
-  constructor: (@renderer, @entity) -> #
+  constructor: (@entity) -> #
 
   saveAndRestore: (ctx, fn) ->
     ctx.save()
@@ -7,10 +7,11 @@ class @SpriteBase extends Events
     ctx.restore()
     result
 
-  render: (ctx) -> #
+  render: (renderer, ctx) -> #
 
-  transform: (ordinates...) ->
+  transform: (renderer, ordinates...) ->
     os = ordinates.inGroupsOf(2).map (o) =>
-      [o[0] * @renderer.width * @renderer.widthRatio,
-       o[1] * @renderer.height * @renderer.heightRatio]
+      [o[0] * renderer.width * renderer.widthRatio,
+       o[1] * renderer.height * renderer.heightRatio]
+
     os.flatten()

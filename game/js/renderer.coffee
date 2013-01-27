@@ -7,8 +7,6 @@ class @Renderer
     @ctx = @canvas.getContext('2d')
     @setupCanvas()
 
-    @sprites = @world.entities.map (e) => console.log(window.e = e); new e.constructor.sprite(@, e)
-
   setupCanvas: ->
     [width, height] = [window.innerWidth - 10, window.innerHeight - 50]
 
@@ -32,4 +30,4 @@ class @Renderer
   loop: =>
     @clear()
 
-    sprite.render(@ctx) for sprite in @sprites
+    entity.sprite.render(@, @ctx) for entity in @world.entities

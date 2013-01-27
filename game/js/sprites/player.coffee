@@ -1,6 +1,6 @@
 class @PlayerSprite extends @SpriteBase
-  render: (ctx) ->
+  render: (renderer, ctx) ->
     @saveAndRestore ctx, =>
       image = new Image()
       image.src = @entity.image.src
-      ctx.drawImage image, @transform(@entity.position[0], @entity.position[1], @entity.width, @entity.height)...
+      ctx.drawImage image, @transform(renderer, @entity.position[0], @entity.position[1], @entity.width, @entity.height)...

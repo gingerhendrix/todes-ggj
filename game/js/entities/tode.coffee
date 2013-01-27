@@ -1,5 +1,5 @@
 class @TodeEntity extends EntityBase
-  @sprite = PlayerSprite
+  @spriteClass = PlayerSprite
   constructor: (attrs={}) ->
     super defaults attrs,
       health: 0

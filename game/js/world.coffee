@@ -6,7 +6,6 @@ class @World
       height: 1
 
     @[key] = value for own key, value of attrs
-    console.log attrs
 
     @entities.push collect(@players, (p) -> p.team.todes).flatten()...
     @entities.push @generateLand(20)...
@@ -43,9 +42,9 @@ class @World
 
     ball.hook 'explode', =>
       explosion = new ExplosionEntity(position: ball.position)
-      explosion.hook 'done', => @entities.remove(explosion)
+      explosion.hook 'done', => @entities.remove (e) -> e is explosion
 
-      @entities.remove(ball)
+      @entities.remove (e) -> e is ball
       @entities.push(explosion)
 
     @entities.push(ball)

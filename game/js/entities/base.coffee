@@ -1,5 +1,5 @@
 class @EntityBase extends @Events
-  @sprite = RectangleSprite
+  @spriteClass = RectangleSprite
   constructor: (attrs={}) ->
     attrs = defaults attrs,
       position: [0, 0]
@@ -15,6 +15,9 @@ class @EntityBase extends @Events
       color: '#000'
 
     @[key] = value for own key, value of attrs
+
+    spriteClass = @constructor.spriteClass
+    @sprite ||= new spriteClass(@)
 
   minX: ->
     @position[0]

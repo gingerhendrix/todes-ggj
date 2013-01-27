@@ -1,5 +1,5 @@
 class @RectangleSprite extends SpriteBase
-  render: (ctx) ->
+  render: (renderer, ctx) ->
     @saveAndRestore ctx, =>
       ctx.fillStyle = @entity.color
-      ctx.fillRect @transform(@entity.position[0], @entity.position[1], @entity.width, @entity.height)...
+      ctx.fillRect @transform(renderer, @entity.position[0], @entity.position[1], @entity.width, @entity.height)...
