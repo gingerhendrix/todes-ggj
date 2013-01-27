@@ -46,7 +46,7 @@ class @World
     ball = new BallEntity(color: 'green', position: [0.1, 0.3], velocity: [0.3*RIGHT, 0.4*UP])
 
     ball.hook 'explode', =>
-      explosion = new ExplosionEntity(position: ball.position)
+      explosion = new ExplosionEntity(position: ball.position, ball : ball)
       explosion.hook 'done', => @entities.remove (e) -> e is explosion
 
       @entities.remove (e) -> e is ball

@@ -1,11 +1,14 @@
 class @BallEntity extends EntityBase
+  @spriteClass = HeartBombSprite
   constructor: (attrs={}) ->
     super defaults attrs,
-      width: 0.01
-      height: 0.01
+      width: 0.05
+      height: 0.05
       forces: [[0, GRAVITY]]
       time: 0
       color: 'rgb(0, 255, 0)'
+      image:
+        src: 'img/small-heart-bomb.png'
 
   onTick: (t) ->
     @time = @time + t
