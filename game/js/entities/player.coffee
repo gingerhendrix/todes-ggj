@@ -1,4 +1,5 @@
 class @PlayerEntity extends EntityBase
+  @sprite = PlayerSprite
   constructor: (attrs={}) ->
     super defaults attrs, 
       width: 0.0438 * 2
@@ -15,4 +16,7 @@ class @PlayerEntity extends EntityBase
  
   stop: (dir) ->
     #@initial.velocity[0] = @velocity[0] = 0
+    #
+  onTick: (t) ->
+    
 

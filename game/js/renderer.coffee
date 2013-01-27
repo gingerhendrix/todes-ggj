@@ -7,6 +7,8 @@ class @Renderer
     @ctx = @canvas.getContext('2d')
     @setupCanvas()
 
+    @sprites = @game.entities().map (e) => new e.constructor.sprite(@, e)
+
   setupCanvas: ->
     [width, height] = [window.innerWidth - 10, window.innerHeight - 50]
 
@@ -31,14 +33,5 @@ class @Renderer
   loop: =>
     @clear()
 
-    @game.entities().forEach (e) =>
-      if e.image
-        image = new Image()
-        image.src = e.image.src
-        @ctx.drawImage image, @transform(e.position[0], e.position[1], e.width, e.height)...
-      else
-        @ctx.fillStyle = e.color
-        @ctx.fillRect @transform(e.position[0], e.position[1], e.width, e.height)...
-
-  transform: (ordinates...) ->
-    ordinates.inGroupsOf(2).map((o) => [o[0] * @width * @widthRatio, o[1] * @height * @heightRatio]).flatten()
+    sprite.render(@ctx) for sprite in @sprites
+    

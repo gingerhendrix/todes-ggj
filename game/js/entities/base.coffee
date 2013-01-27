@@ -1,4 +1,5 @@
 class @EntityBase extends @Events
+  @sprite = RectangleSprite
   constructor: (attrs={}) ->
     attrs = defaults attrs,
       position: [0, 0]
