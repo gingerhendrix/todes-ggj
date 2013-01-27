@@ -5,9 +5,10 @@ class @Controller
     @currentPlayer = @game.players[0]
 
   initializeEvents: ->
-    @$el.keydown (e) => 
-      e.preventDefault()
-      e.stopPropagation()
+    @$el.keydown (e) =>
+      if e.which is 37 or e.which is 39
+        e.preventDefault()
+
       @handleKey e.which
 
   handleKey: (key) ->
