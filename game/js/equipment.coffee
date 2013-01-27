@@ -9,3 +9,4 @@ class @Equipment
 
 Equipment.WEAPONS =
   1: HeartBombWeapon
+  2: WeaponBase

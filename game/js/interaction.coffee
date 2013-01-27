@@ -16,3 +16,5 @@ class @Interaction
       @game.round.currentTode.smallJump(LEFT)
     else if e.which is 79
       @game.round.currentTode.smallJump(RIGHT)
+    else if 49 <= e.which <= 57
+      @game.round.currentPlayer.equipment.selectWeapon(e.which - 48)
