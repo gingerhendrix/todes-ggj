@@ -2,7 +2,7 @@ class @TodeEntity extends EntityBase
   @spriteClass = TodeSprite
   constructor: (attrs={}) ->
     super defaults attrs,
-      health: 0
+      health: 50 
       width: 0.0438 * 2
       height: 0.0306 * 2
       walkingSpeed: 0.1
@@ -18,10 +18,10 @@ class @TodeEntity extends EntityBase
       isCurrent: false
 
   smallJump: (dir) ->
-    @initial.velocity = @velocity = [0.1 * dir, 2]
+    @initial.velocity = @velocity = [0.1 * dir, 0.2 * UP]
 
   bigJump: (dir) ->
-    @initial.velocity = @velocity = [0.2 * dir, 4]
+    @initial.velocity = @velocity = [0.2 * dir, 0.2 * UP]
 
   onTick: (t) -> #
 
