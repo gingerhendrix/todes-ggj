@@ -20,10 +20,10 @@ class @Physics
         [cx, cy] = collision.center()
         [ex, ey] = entity.center()
         [dx, dy] = [cx-ex, cy-ey]
-        m = 1/Math.sqrt( dx*dx + dy*dy)
+        m = 2/Math.sqrt( dx*dx + dy*dy)
         entity.velocity[0] += dx * m
         entity.velocity[1] += dy * m
-        console.log "Explosion Damage", entity, collision
+        #console.log "Explosion Damage", entity, collision
 
   doBounce: (e, collision) ->
     #### General Algorithm

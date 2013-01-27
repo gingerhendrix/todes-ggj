@@ -32,8 +32,13 @@ class @Renderer
     @clear()
 
     @game.entities().forEach (e) =>
-      @ctx.fillStyle = e.color
-      @ctx.fillRect @transform(e.position[0], e.position[1], e.width, e.height)...
+      if e.image
+        image = new Image()
+        image.src = e.image.src
+        @ctx.drawImage image, @transform(e.position[0], e.position[1], e.width, e.height)...
+      else
+        @ctx.fillStyle = e.color
+        @ctx.fillRect @transform(e.position[0], e.position[1], e.width, e.height)...
 
   transform: (ordinates...) ->
     ordinates.inGroupsOf(2).map((o) => [o[0] * @width * @widthRatio, o[1] * @height * @heightRatio]).flatten()
