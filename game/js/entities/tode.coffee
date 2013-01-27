@@ -1,4 +1,4 @@
-class @PlayerEntity extends EntityBase
+class @TodeEntity extends EntityBase
   @sprite = PlayerSprite
   constructor: (attrs={}) ->
     super defaults attrs,
@@ -12,6 +12,10 @@ class @PlayerEntity extends EntityBase
         width: 438
         height: 306
 
+      velocity: [Math.random(), 0]
+      position: [Math.random(), 0.0]
+      color: ['red', 'blue'].sample()
+
   moving: (dir) ->
     #@initial.velocity[0] = @velocity[0] = dir * @walkingSpeed
 
@@ -22,5 +26,3 @@ class @PlayerEntity extends EntityBase
 
   heal: (points) -> @health += points
   sadden: (points) -> @health -= points
-
-@TodeEntity = PlayerEntity

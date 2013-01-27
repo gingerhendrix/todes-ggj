@@ -1,30 +1,17 @@
 class @World
   constructor: (attrs) ->
-    defaults attrs,
+    attrs = defaults attrs,
+      entities: []
       width: 2
       height: 1
 
     @[key] = value for own key, value of attrs
+    console.log attrs
 
-    @players = [
-      new PlayerEntity(position: [0.25, 0.0], color: 'red', velocity: [0.01, 0]),
-      new PlayerEntity(position: [1.17, 0.0], color: 'blue', velocity: [-0.01, 0])
-      new PlayerEntity(position: [1.05, 0.0], color: 'blue', velocity: [0.01, 0])
-      new PlayerEntity(position: [1.25, 0.0], color: 'red', velocity: [-0.01, 0])
-    ]
+    @entities.push collect(@players, (p) -> p.team.todes).flatten()...
+    @entities.push @generateLand(20)...
 
-    @land = @generateLand(20)
-    console.log @land
-
-    @ball = new BallEntity(color: 'green', position: [0.1, 0.3], velocity: [0.3*RIGHT, 0.4*UP])
-
-    @ball.hook 'explode', =>
-      @explosion = new ExplosionEntity(position: @ball.position)
-
-      @explosion.hook 'done', =>
-        @explosion = false
-
-      @ball = false
+    @dummyBall()
 
     @physics = new Physics(@)
     @explosion = false
@@ -51,10 +38,16 @@ class @World
 
     lands
 
-  entities: ->
-    es = [@land..., @players...]
-    es.push(@ball) if @ball
-    es.push(@explosion) if @explosion
-    es
+  dummyBall: ->
+    ball = new BallEntity(color: 'green', position: [0.1, 0.3], velocity: [0.3*RIGHT, 0.4*UP])
+
+    ball.hook 'explode', =>
+      explosion = new ExplosionEntity(position: ball.position)
+      explosion.hook 'done', => @entities.remove(explosion)
+
+      @entities.remove(ball)
+      @entities.push(explosion)
+
+    @entities.push(ball)
 
   ticksPerSecond: 60

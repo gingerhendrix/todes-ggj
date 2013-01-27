@@ -7,7 +7,7 @@ class @Renderer
     @ctx = @canvas.getContext('2d')
     @setupCanvas()
 
-    @sprites = @world.entities().map (e) => new e.constructor.sprite(@, e)
+    @sprites = @world.entities.map (e) => console.log(window.e = e); new e.constructor.sprite(@, e)
 
   setupCanvas: ->
     [width, height] = [window.innerWidth - 10, window.innerHeight - 50]

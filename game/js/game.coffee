@@ -1,6 +1,9 @@
 class @Game
   constructor: (@canvas) ->
-    @world = new World(width: 2, height: 1)
+    @players = [new Player(1), new Player(2)]
+    @round = new Round(game: @, players: @players)
+
+    @world = new World(width: 2, height: 1, round: @round, players: @players)
     @renderer = new Renderer(@world, @canvas)
 
   start: ->

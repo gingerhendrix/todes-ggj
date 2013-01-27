@@ -13,17 +13,17 @@ class @Physics
   pause: -> @timer.stop()
 
   advance: (t) ->
-    @world.entities().forEach (e) =>
+    @world.entities.forEach (e) =>
       e.onTick(t)
 
-    @world.entities().forEach (e) =>
+    @world.entities.forEach (e) =>
       @advanceMotion(e, t) if e.isMoving()
 
-    @world.entities().forEach (e) =>
+    @world.entities.forEach (e) =>
       @handleCollision(e) if e.isMoving()
 
   handleCollision: (entity) ->
-    collisions =  @world.entities().findAll ((other) => @detectCollision(entity, other)), @world.entities()
+    collisions =  @world.entities.findAll ((other) => @detectCollision(entity, other)), @world.entities
     collisions.forEach (collision) =>
       if collision.isSolid()
         @doBounce(entity, collision)
