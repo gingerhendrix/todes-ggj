@@ -1,4 +1,5 @@
 class @LandEntity extends EntityBase
+  @spriteClass = LandSprite
   constructor: (attrs={}) ->
     super defaults attrs,
       position: [0, 0.7]
