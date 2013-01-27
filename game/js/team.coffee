@@ -1,4 +1,4 @@
-PLAYERS_PER_TEAM = 4
+@PLAYERS_PER_TEAM = 4
 
 class @Team
   constructor: (@player, @name) ->

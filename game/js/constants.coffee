@@ -5,7 +5,7 @@ exports.RIGHT = 1
 exports.UP = -1
 exports.DOWN = 1
 
-exports.GRAVITY = 0.5
+exports.GRAVITY = 0.8
 exports.ALMOST_ZERO = 0.000001
 exports.STOPPED = 0.005
 exports.BOUNCE = 0.1

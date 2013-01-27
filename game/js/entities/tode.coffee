@@ -17,11 +17,11 @@ class @TodeEntity extends EntityBase
       color: ['red', 'blue'].sample()
       isCurrent: false
 
-  moving: (dir) ->
-    #@initial.velocity[0] = @velocity[0] = dir * @walkingSpeed
+  smallJump: (dir) ->
+    @initial.velocity = @velocity = [0.1 * dir, 2]
 
-  stop: (dir) ->
-    #@initial.velocity[0] = @velocity[0] = 0
+  bigJump: (dir) ->
+    @initial.velocity = @velocity = [0.2 * dir, 4]
 
   onTick: (t) -> #
 

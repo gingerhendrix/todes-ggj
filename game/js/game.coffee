@@ -6,6 +6,8 @@ class @Game
     @world = new World(width: 2, height: 1, round: @round, players: @players)
     @renderer = new Renderer(@world, @canvas)
 
+    @interaction = new Interaction(@, $(document.body))
+
   start: ->
     @renderer.start()
     @world.physics.start()
