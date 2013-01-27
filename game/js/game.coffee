@@ -7,8 +7,8 @@ class @Game
     @[key] = value for own key, value of attrs
     
     @players = [
-      new PlayerEntity(position: [0.1, 0.0], color: 'red', velocity: [0.05, 0]),
-      new PlayerEntity(position: [1.4, 0.0], color: 'blue', velocity: [-0.05, 0])
+      new PlayerEntity(position: [0.1, 0.0], color: 'red', velocity: [0.01, 0]),
+      new PlayerEntity(position: [1.1, 0.0], color: 'blue', velocity: [-0.01, 0])
     ]
 
     @land = [new LandEntity(position: [0, 0.5], width: 0.5, height: 0.5),
