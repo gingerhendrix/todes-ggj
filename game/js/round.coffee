@@ -8,8 +8,12 @@ class @Round
     @initialize?()
 
   nextTurn: ->
+    @currentPlayer?.team.todes.forEach (t) -> t.isCurrent = false
+
     @currentTode = @todeGenerator()
     @currentPlayer = @currentTode.player
+
+    @currentTode.isCurrent = true
 
 todeGenerator = (players) ->
   numPlayers = players.length

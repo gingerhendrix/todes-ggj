@@ -15,6 +15,7 @@ class @TodeEntity extends EntityBase
       velocity: [Math.random() / 4, 0]
       position: [Math.random(), 0.0]
       color: ['red', 'blue'].sample()
+      isCurrent: false
 
   moving: (dir) ->
     #@initial.velocity[0] = @velocity[0] = dir * @walkingSpeed

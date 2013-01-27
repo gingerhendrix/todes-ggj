@@ -28,3 +28,11 @@ describe 'Rounds', ->
     it 'should be player 2, tode 2', ->
       @round.nextTurn()
       expect(@round.currentTode).to.equal(@playerTwo.team.todes[1])
+
+    describe "current tode", ->
+      it "should only be isCurrent on the round's current tode", ->
+        expect(@round.currentTode.isCurrent).to.be.true
+
+        @round.players.forEach (player) =>
+          player.team.todes.forEach (tode) =>
+            expect(tode.isCurrent).to.be.false unless @round.currentTode is tode
