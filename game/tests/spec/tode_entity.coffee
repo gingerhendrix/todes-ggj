@@ -5,6 +5,9 @@ describe 'Tode entity', ->
     @player = new Player(1)
     @sampleTode = @player.team.todes.first()
 
+  it 'should have its player', ->
+    expect(@sampleTode.player).to.equal(@player)
+
   describe 'health', ->
     it 'should be 0 by default', ->
       expect(@sampleTode.health).to.equal(0)

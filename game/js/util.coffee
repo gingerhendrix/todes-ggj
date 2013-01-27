@@ -23,4 +23,4 @@ class @Events
   trigger: (event, params...) ->
     @_hooks?[event]?.forEach (cb) -> cb params...
 
-exports.defaults = (t, s) -> Object.merge s, t, true
+exports.defaults = (t, s) -> Object.merge s, t, false
