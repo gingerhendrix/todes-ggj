@@ -23,7 +23,7 @@ class @Physics
       @handleCollision(e) if e.isMoving()
 
   handleCollision: (entity) ->
-    collisions =  @world.entities.findAll ((other) => @detectCollision(entity, other)), @world.entities
+    collisions =  @world.entities.findAll (other) => @detectCollision(entity, other)
     collisions.forEach (collision) =>
       if collision.isSolid()
         @doBounce(entity, collision)
@@ -34,7 +34,7 @@ class @Physics
         m = 2/Math.sqrt( dx*dx + dy*dy)
         entity.velocity[0] += dx * m
         entity.velocity[1] += dy * m
-        #console.log "Explosion Damage", entity, collision
+        console.log "Explosion Damage", entity, collision
 
   doBounce: (e, collision) ->
     #### General Algorithm

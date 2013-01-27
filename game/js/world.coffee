@@ -7,6 +7,11 @@ class @World
 
     @[key] = value for own key, value of attrs
 
+    @viewport = new Viewport
+      width: 2
+      height: 1
+
+
     @entities.push collect(@players, (p) -> p.team.todes).flatten()...
     @entities.push @generateLand(20)...
 

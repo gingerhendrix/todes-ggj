@@ -1,4 +1,4 @@
-class @PlayerSprite extends @SpriteBase
+class @BackgroundSprite extends SpriteBase
   render: (renderer, ctx) ->
     @saveAndRestore ctx, =>
       image = new Image()
